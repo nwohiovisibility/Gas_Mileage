@@ -1,6 +1,7 @@
 /*
 Filename: LineChart.tsx
-Last Edit Date: 2026-08-29 EST
+Last Edit Date: 2026-10-21 EST
+Purpose: Small SVG line chart with a hover/tap readout and its max and average values.
 */
 import { useId, useRef, useState } from 'react'
 
@@ -14,9 +15,10 @@ interface Props {
   color: string
   formatValue?: (value: number) => string
   height?: number
+  average?: number
 }
 
-export default function LineChart({ points, color, formatValue = (v) => v.toFixed(1), height = 160 }: Props) {
+export default function LineChart({ points, color, formatValue = (v) => v.toFixed(1), height = 160, average }: Props) {
   const gradientId = useId()
   const svgRef = useRef<SVGSVGElement>(null)
   const [hover, setHover] = useState<number | null>(null)
@@ -123,6 +125,11 @@ export default function LineChart({ points, color, formatValue = (v) => v.toFixe
       {!active && (
         <text x={width - padding} y={padding} textAnchor="end" className="chart-axis-label">
           max {formatValue(max)}
+        </text>
+      )}
+      {!active && average !== undefined && (
+        <text x={width - padding} y={padding + 13} textAnchor="end" className="chart-axis-label">
+          avg {formatValue(average)}
         </text>
       )}
 
