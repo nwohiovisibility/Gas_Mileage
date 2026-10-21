@@ -1,7 +1,7 @@
 /*
 Filename: NewFillUp.tsx
-Last Edit Date: 2026-09-25 EST
-Purpose: Single-page entry for a new fill-up: date, odometer, gallons, and total cost, then save.
+Last Edit Date: 2026-10-21 EST
+Purpose: Single-page entry for a new fill-up: date, odometer, total cost, and gallons, then save.
 */
 import { useState } from 'react'
 import OdometerDisplay from './OdometerDisplay'
@@ -59,12 +59,12 @@ export default function NewFillUp({ onDone }: Props) {
             <OdometerDisplay value={odometer} onChange={setOdometer} autoFocus />
           </label>
           <label>
-            Gallons
-            <GallonsDisplay value={gallons} onChange={setGallons} />
-          </label>
-          <label>
             Total cost ($)
             <RegisterDisplay value={totalCost} onChange={setTotalCost} />
+          </label>
+          <label>
+            Gallons
+            <GallonsDisplay value={gallons} onChange={setGallons} />
           </label>
           <div className="confirm-price-per-gal">
             <span className="confirm-price-per-gal-label">Price/gal</span>
